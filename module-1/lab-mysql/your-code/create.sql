@@ -31,6 +31,15 @@ CREATE TABLE Invoices (
     DateInvoices datetime,
     Car INT,
     Customer INT,
-    Staff INT
+    Staff INT,
+	constraint fk_car
+		foreign key (Car)
+		references cars(id),
+	constraint fk_customer
+		foreign key (Customer)
+		references customers(id),
+	constraint fk_staff
+		foreign key (Staff)
+		references Salespersons(id)
 );
 /*missing foreign key constraint in Invoices*/
