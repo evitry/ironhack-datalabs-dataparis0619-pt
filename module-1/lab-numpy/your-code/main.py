@@ -28,10 +28,13 @@ print(b)
 
 #7. Do a and b have the same size? How do you prove that in Python code?
 def array_size_comparision(a,b):
+    return a.size == b.size
+
+"""def array_size_comparision(a,b):
     if a.size == b.size:
         return True
     else:
-        return False
+        return False"""
     
 array_size_comparision(a,b)
 
@@ -85,6 +88,7 @@ Assign 100 to the corresponding value(s) in f for d_max in d.
 In the end, f should have only the following values: 0, 25, 50, 75, and 100.
 Note: you don't have to use Numpy in this question.
 """
+"""old response
 for i in range(2):
     for j in range(3):
         for k in range(5):
@@ -98,8 +102,18 @@ for i in range(2):
             elif d[i,j,k]==d_min:
                 f[i,j,k]=0
             elif d[i,j,k]==d_max:
-                f[i,j,k]=100
-        
+                f[i,j,k]=100"""
+     
+#new response
+
+f = f.astype(str)
+
+f[f == '0.0'] = 'A'
+f[f == '25.0'] = 'B'
+f[f == '50.0'] = 'C'
+f[f == '75.0'] = 'D'
+f[f == '100.0'] = 'E'
+
 print(f)
 
 
@@ -138,6 +152,8 @@ array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'B',  'D',   'A',  'D', 'D']]])
 Again, you don't need Numpy in this question.
 """
+
+"""old response
 f = f.astype(str)
 for i in range(2):
     for j in range(3):
@@ -153,5 +169,14 @@ for i in range(2):
                 f[i,j,k]="A"
             elif d[i,j,k]==d_max:
                 f[i,j,k]="E"
-        
+        """
+
+#new response
+
+f[f == 0] = 'A'
+f[f == 25] = 'B'
+f[f == 50] = 'C'
+f[f == 75] = 'D'
+f[f == 100] = 'E'
+
 print(f)
