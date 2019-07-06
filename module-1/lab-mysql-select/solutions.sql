@@ -23,7 +23,7 @@ inner join titleauthor ta on a.au_id = ta.au_id
 inner join titles t on ta.title_id = t.title_id
 inner join publishers p on p.pub_id = t.pub_id
 group by a.au_id
-order by a.au_lname;
+order by p.pub_name;
 
 /*challenge 3*/
 
