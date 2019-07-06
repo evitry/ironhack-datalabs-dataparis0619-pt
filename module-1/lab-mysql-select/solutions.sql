@@ -27,7 +27,7 @@ order by a.au_lname;
 
 /*challenge 3*/
 
-select a.au_id as "Author ID",a.au_lname as "Last Name",a.au_fname as "First Name", sum(s.ord_num) as "Total"
+select a.au_id as "Author ID",a.au_lname as "Last Name",a.au_fname as "First Name", sum(s.qty) as "Total"
 from authors a
 inner join titleauthor ta on a.au_id = ta.au_id
 inner join titles t on ta.title_id = t.title_id
@@ -38,7 +38,7 @@ limit 3;
 
 /*challenge 4*/
 
-select a.au_id as "Author ID",a.au_lname as "Last Name",a.au_fname as "First Name", sum(ifnull(s.ord_num,0)) as "Total"
+select a.au_id as "Author ID",a.au_lname as "Last Name",a.au_fname as "First Name", sum(ifnull(s.qty,0)) as "Total"
 from authors a 
 left outer join titleauthor ta on a.au_id = ta.au_id
 left outer join titles t on ta.title_id = t.title_id
@@ -48,14 +48,15 @@ order by total desc;
 
 /*Bonus challenge*/
 
-/*select *,sum(qty) from sales
-group by title_id;*/
+/*faux car on prend un advance sans prendre la somme des advance de chaque titre d'un auteur. On ne peut pas sommer car on ajouterais plusieurs fois le même titre*/
 
-select a.au_id,a.au_lname,a.au_fname, sum(ta.royaltyper*t.advance/100) as Advance, sum(t.royalty*t.price*t.ytd_sales/100) as Royalties,sum(ta.royaltyper*t.advance/100+t.royalty*t.price*t.ytd_sales/100) as Profit
+select a.au_id,a.au_lname,a.au_fname, title,
+-- sum(t.royalty/100*t.price*s.qty*ta.royaltyper/100) + 
+Advance as Profit -- , Advance + Royalties as Profit
 from authors a
 inner join titleauthor ta on a.au_id = ta.au_id
 inner join titles t on ta.title_id = t.title_id
 inner join sales s on t.title_id = s.title_id
 group by a.au_id
-order by Profit desc
-Limit 3;
+order by Profit desc;
+-- Limit 3;
