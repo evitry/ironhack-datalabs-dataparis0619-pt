@@ -51,8 +51,7 @@ order by total desc;
 /*faux car on prend un advance sans prendre la somme des advance de chaque titre d'un auteur. On ne peut pas sommer car on ajouterais plusieurs fois le même titre*/
 
 select a.au_id,a.au_lname,a.au_fname, title,
--- sum(t.royalty/100*t.price*s.qty*ta.royaltyper/100) + 
-Advance as Profit -- , Advance + Royalties as Profit
+sum(t.royalty/100*t.price*s.qty*ta.royaltyper/100) + sum(Advance) as Profit -- , Advance + Royalties as Profit
 from authors a
 inner join titleauthor ta on a.au_id = ta.au_id
 inner join titles t on ta.title_id = t.title_id
